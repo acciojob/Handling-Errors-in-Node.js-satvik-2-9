@@ -1,7 +1,16 @@
 const fs = require('fs');
 
-function printFileContents(filePath) {
-  // TODO: Use fs.readFile to read the file contents
+const filePath = process.argv[2];
+
+if (!filePath) {
+  console.error('Usage: node print.js <file_path>');
+  process.exit(1);
 }
 
-// TODO: Call printFileContents with the command-line argument
+fs.readFile(filePath, 'utf8', (err, data) => {
+  if (err) {
+    console.error(`Error: ${err.message}`);
+  } else {
+    console.log(data);
+  }
+});
